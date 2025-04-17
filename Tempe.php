@@ -21,7 +21,7 @@ class Tempe {
     public function endsection()
     {
         $currentSection = $this->currentSection;
-        $this->section[$currentSection] = ob_get_flush();
+        $this->section[$currentSection] = ob_get_contents();
         ob_end_clean();
         include_once(__DIR__ . '/' . $this->extendView . '.php');
     }
