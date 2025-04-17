@@ -1,10 +1,14 @@
 <?php
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 class Tempe {
 
     public $section = [];
     public $currentSection;
-    public $extendView;
+    public $extend = [];
 
     public function render($s)
     {
@@ -23,12 +27,13 @@ class Tempe {
         $currentSection = $this->currentSection;
         $this->section[$currentSection] = ob_get_contents();
         ob_end_clean();
-        include_once(__DIR__ . '/' . $this->extendView . '.php');
+        include_once(__DIR__ . '/../../' . $this->extend['view'] . '.php');
     }
 
-    public function extend($f)
+    public function extend($f, $data = [])
     {
-        $this->extendView = $f;
+        $this->extend['view'] = $f;
+        $this->extend['data'] = $data;
     }
 
 }
