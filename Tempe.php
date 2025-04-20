@@ -27,7 +27,8 @@ class Tempe {
         $currentSection = $this->currentSection;
         $this->section[$currentSection] = ob_get_contents();
         ob_end_clean();
-        include_once(__DIR__ . '/../../' . $this->extend['view'] . '.php');
+        extract($this->extend['data']);
+        include_once(__DIR__ . '/../views/' . $this->extend['view'] . '.php');
     }
 
     public function extend($f, $data = [])
